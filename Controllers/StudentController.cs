@@ -7,13 +7,19 @@ namespace WebApplication.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class StudentController : ControllerBase
+    public class StudentsController : ControllerBase
     {
         private readonly IStudentRepository _studentRepository;
 
-        public StudentController(IStudentRepository studentRepository)
+        public StudentsController(IStudentRepository studentRepository)
         {
             _studentRepository = studentRepository;
+        }
+
+        [HttpGet]
+        public IActionResult GetAllStudents()
+        {
+            return Ok(_studentRepository.GetAllStudents());
         }
 
         [HttpGet("{studentId}")]

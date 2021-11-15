@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using WebApplication.Models;
 
 namespace WebApplication.Repository
@@ -11,5 +12,6 @@ namespace WebApplication.Repository
         Student DeleteStudent(int id);
 
         Student UpdateStudent(Student student);
+        List<Student> GetAllStudents();
     }
 }
