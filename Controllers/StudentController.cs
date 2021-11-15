@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication.Repository;
 using WebApplication.Service;
@@ -19,13 +20,23 @@ namespace WebApplication.Controllers
         [HttpGet]
         public IActionResult GetAllStudents()
         {
-            return Ok(_studentRepository.GetAllStudents());
+            var allStudentsList = _studentRepository.GetAllStudents();
+            if (allStudentsList == null || !allStudentsList.Any())
+            {
+                return NotFound("啊哦，没有找到学生列表...");
+            }
+            return Ok(allStudentsList);
         }
 
         [HttpGet("{studentId}")]
-        public IActionResult GetStudentMessage(int studentId)
+        public IActionResult GetStudentMessage(Guid studentId)
         {
-            return Ok(_studentRepository.SearchStudent(studentId));
+            var studentWithId = _studentRepository.SearchStudent(studentId);
+            if (studentWithId == null)
+            {
+                return NotFound($"id为{studentId}的学生不存在哦！");
+            }
+            return Ok(studentWithId);
         }
         
     }

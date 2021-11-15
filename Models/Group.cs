@@ -1,3 +1,6 @@
+using System.Collections;
+using System.Collections.Generic;
+
 namespace WebApplication.Models
 {
     public class Group
@@ -7,5 +10,7 @@ namespace WebApplication.Models
         public string Name { set; get; }
         
         public string Note { set; get; }
+        
+        public ICollection<Student> Students { set; get; }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using WebApplication.Models;
 
@@ -5,13 +6,13 @@ namespace WebApplication.Repository
 {
     public interface IStudentRepository
     {
-        int AddStudent(Student student);
+        Guid AddStudent(Student student);
 
-        Student SearchStudent(int id);
+        Student SearchStudent(Guid id);
         
-        Student DeleteStudent(int id);
+        Student DeleteStudent(Guid id);
 
         Student UpdateStudent(Student student);
-        List<Student> GetAllStudents();
+        IEnumerable<Student> GetAllStudents();
     }
 }
